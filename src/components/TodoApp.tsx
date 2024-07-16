@@ -1,48 +1,36 @@
- import TaskList from "./TaskList"
- import { useState } from "react";
- const TodoApp = () => {
+import TaskList from "./TaskList";
+import { useState } from "react";
 
-    const [newTask, setNewTask] = useState<string>('')
-    let task: string
-    const [listTask, setListTask] = useState<string[]>([])
+const TodoApp = () => {
+  const [newTask, setNewTask] = useState<string>("");
+  const [listTask, setListTask] = useState<string[]>([]);
 
-    const handleAddTask = () => {
-        console.log('en la funcion');
-        if(newTask.trim() === '') return
-        setListTask( previousTasks => [...previousTasks, newTask])
-        setNewTask('')
-    }
+  const handleAddTask = () => {
+    console.log("en la funcion");
+    if (newTask.trim() === "") return;
+    setListTask((previousTasks) => [...previousTasks, newTask]);
+    setNewTask("");
+  };
 
-    const handleDeleteTask = (index:number) =>{
-      //arreglar  
-      console.log('delete');
-      setListTask( task => task.filter((_, i) => i !== index ))  
-    }
+  const handleDeleteTask = (index: number) => {
+    setListTask((task) => task.filter((_, i) => i !== index));
+  };
 
   return (
-    <div className="container">
+    <div>
       <h1>Task list</h1>
-      <div>
-        <input 
-        type="text" 
-        value={newTask}
-        onChange={(e) => {
-          //areglar
-            task = e.target.value
-            setNewTask(task)
-            console.log(task);
-        } }
-        placeholder="New task"
+      <div className="flex">
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="New task"
         />
-        <button
-        onClick={handleAddTask}
-        >
-            Add task
-        </button>
+        <button onClick={handleAddTask}>Add task</button>
       </div>
-      <TaskList listTask = {listTask} deleteTask = {handleDeleteTask} />
+      <TaskList listTask={listTask} deleteTask={handleDeleteTask} />
     </div>
   );
-}
+};
 
-export default TodoApp
+export default TodoApp;
