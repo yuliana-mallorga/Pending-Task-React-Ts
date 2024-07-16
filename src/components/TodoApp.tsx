@@ -6,7 +6,6 @@ const TodoApp = () => {
   const [listTask, setListTask] = useState<string[]>([]);
 
   const handleAddTask = () => {
-    console.log("en la funcion");
     if (newTask.trim() === "") return;
     setListTask((previousTasks) => [...previousTasks, newTask]);
     setNewTask("");
